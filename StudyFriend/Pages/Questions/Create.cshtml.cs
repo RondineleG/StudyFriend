@@ -1,7 +1,7 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using StudyFriend.Data;
 using StudyFriend.Models;
+using System.Threading.Tasks;
 
 namespace StudyFriend.Pages.Questions
 {
@@ -15,7 +15,7 @@ namespace StudyFriend.Pages.Questions
         }
 
         public IActionResult OnGet(int? topicId)
-        {            
+        {
             if (topicId != null)
             {
                 PopulateTopicsDropDownList(_context, topicId);

@@ -6,7 +6,7 @@ namespace StudyFriend.Data
 {
     public class StudyFriendContext : IdentityDbContext<ApplicationUser>
     {
-        public StudyFriendContext (DbContextOptions<StudyFriendContext> options)
+        public StudyFriendContext(DbContextOptions<StudyFriendContext> options)
             : base(options)
         {
         }

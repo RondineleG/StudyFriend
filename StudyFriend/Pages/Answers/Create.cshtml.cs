@@ -1,7 +1,7 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using StudyFriend.Data;
 using StudyFriend.Models;
+using System.Threading.Tasks;
 
 namespace StudyFriend.Pages.Answers
 {
@@ -45,7 +45,7 @@ namespace StudyFriend.Pages.Answers
                 s => s.AnswerID, s => s.QuestionID, s => s.Body, s => s.Question))
             {
                 _context.Answer.Add(emptyAnswer);
-                await _context.SaveChangesAsync();                
+                await _context.SaveChangesAsync();
                 return RedirectToPage("../Questions/Details", new { id = emptyAnswer.QuestionID });
             }
 

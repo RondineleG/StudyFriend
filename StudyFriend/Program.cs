@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using System;
 using StudyFriend.Data;
-using Microsoft.AspNetCore.Identity;
 using StudyFriend.Models;
+using System;
 
 namespace StudyFriend
 {
@@ -21,7 +21,7 @@ namespace StudyFriend
 
                 try
                 {
-                    var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();                    
+                    var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
                     var context = services.GetRequiredService<StudyFriendContext>();
                     await DbInitializer.InitializeAsync(context, userManager);
                 }

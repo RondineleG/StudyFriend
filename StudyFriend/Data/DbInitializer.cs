@@ -1,15 +1,14 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using StudyFriend.Models;
 using System.Linq;
-using System.Security.Policy;
 
 namespace StudyFriend.Data
 {
     public static class DbInitializer
-    
-    {        
+
+    {
         public static async System.Threading.Tasks.Task InitializeAsync(
-            StudyFriendContext context, 
+            StudyFriendContext context,
             UserManager<ApplicationUser> userManager
             )
         {
@@ -36,7 +35,7 @@ namespace StudyFriend.Data
             }
             context.SaveChanges();
 
-            
+
             var questions = new Question[]
             {
                 new Question{ Body="How do you stop event bubbling?", TopicID=topics[0].TopicID }

@@ -1,8 +1,8 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StudyFriend.Data;
 using StudyFriend.Models;
+using System.Threading.Tasks;
 
 namespace StudyFriend.Pages.Answers
 {
@@ -61,6 +61,6 @@ namespace StudyFriend.Pages.Answers
 
             PopulateQuestionsDropDownList(_context, answerToUpdate.QuestionID);
             return Page();
-        }        
+        }
     }
 }

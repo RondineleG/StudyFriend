@@ -65,7 +65,7 @@ namespace StudyFriendTests
                 {
                     AllowAutoRedirect = false,
                 });
-            
+
             client.DefaultRequestHeaders.Authorization =
                 new AuthenticationHeaderValue("Test");
 

@@ -1,8 +1,8 @@
-﻿using System.Linq;
-using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using StudyFriend.Data;
+using System.Linq;
 using System.Security.Claims;
 
 namespace StudyFriend.Pages.Questions
@@ -18,7 +18,7 @@ namespace StudyFriend.Pages.Questions
             var topicsQuery = from t in _context.Topic
                               where t.UserId == userId
                               orderby t.Name
-                              select t;            
+                              select t;
             TopicNameSL = new SelectList(topicsQuery.AsNoTracking(),
                 "TopicID", "Name", selectedTopic);
         }

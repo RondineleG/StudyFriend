@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Linq;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
 using StudyFriend.Data;
 using StudyFriend.Models;
-using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace StudyFriend.Pages.Topics
 {
@@ -21,17 +21,17 @@ namespace StudyFriend.Pages.Topics
             _context = context;
             _userManager = userManager;
         }
-        
+
         public IList<Topic> Topic { get; set; }
         [BindProperty(SupportsGet = true)]
         public string SearchString { get; set; }
-        
+
         public async Task OnGetAsync()
         {
             var currUser = await _userManager.GetUserAsync(User);
             var topics = from t in _context.Topic
                          where t.UserId == currUser.Id
-                         select t;           
+                         select t;
 
             if (!string.IsNullOrEmpty(SearchString))
             {

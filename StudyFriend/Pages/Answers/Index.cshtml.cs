@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using StudyFriend.Data;
 using StudyFriend.Models;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace StudyFriend.Pages.Answers
 {
@@ -16,7 +16,7 @@ namespace StudyFriend.Pages.Answers
             _context = context;
         }
 
-        public IList<Answer> Answer { get;set; }
+        public IList<Answer> Answer { get; set; }
 
         public async Task OnGetAsync()
         {

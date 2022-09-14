@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using System.Linq;
-using StudyFriend.Data;
+﻿using StudyFriend.Data;
 using StudyFriend.Models;
+using System.Linq;
 using Xunit;
 
 namespace StudyFriendTests
@@ -28,8 +24,8 @@ namespace StudyFriendTests
                 db.SaveChanges();
 
                 var topic = (from t in db.Topic
-                            where t.UserId == user_id
-                            select t).Single();
+                             where t.UserId == user_id
+                             select t).Single();
 
                 Assert.Equal(topic.UserId, user_id);
             }
