@@ -13,30 +13,30 @@ namespace StudyJourney
     {
         public static async System.Threading.Tasks.Task Main(string[] args)
         {
-            var host = CreateWebHostBuilder(args).Build();
+            IWebHost host = CreateWebHostBuilder(args).Build();
 
-            using (var scope = host.Services.CreateScope())
+            using (IServiceScope scope = host.Services.CreateScope())
             {
-                var services = scope.ServiceProvider;
-
+                IServiceProvider services = scope.ServiceProvider;
+                ILoggerFactory loggerFactory = services.GetRequiredService<ILoggerFactory>();
                 try
                 {
-                    var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
-                    var context = services.GetRequiredService<StudyFriendContext>();
-                    await DbInitializer.InitializeAsync(context, userManager);
+                    UserManager<ApplicationUser> userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
+                    RoleManager<IdentityRole> roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+                    StudyJourneyDbContext studyFriendContext = services.GetRequiredService<StudyJourneyDbContext>();
+                    await DbInitializer.SeedDataAsync(studyFriendContext, userManager);
+                    await DbInitializer.SeedRolesAsync(userManager, roleManager);
+                    await DbInitializer.SeedSuperAdminAsync(userManager, roleManager);
+                    await DbInitializer.SeedBasicUserAsync(userManager, roleManager);
                 }
                 catch (Exception ex)
                 {
-                    var logger = services.GetRequiredService<ILogger<Program>>();
-                    logger.LogError(ex, "Oh no! An err creating the db!");
+                    ILogger<Program> createLoggerFactory = loggerFactory.CreateLogger<Program>();
+                    createLoggerFactory.LogError(ex, "An error occurred seeding the DB.");
                 }
             }
-
             host.Run();
         }
-
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) => WebHost.CreateDefaultBuilder(args).UseStartup<Startup>();
     }
 }

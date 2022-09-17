@@ -10,10 +10,10 @@ namespace StudyJourney.Pages.Topics
 {
     public class CreateModel : PageModel
     {
-        private readonly StudyFriendContext _context;
+        private readonly StudyJourneyDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public CreateModel(StudyFriendContext context,
+        public CreateModel(StudyJourneyDbContext context,
             UserManager<ApplicationUser> userManager)
         {
             _context = context;
@@ -35,7 +35,7 @@ namespace StudyJourney.Pages.Topics
                 return Page();
             }
 
-            var currUser = await _userManager.GetUserAsync(User);
+            ApplicationUser currUser = await _userManager.GetUserAsync(User);
 
             Topic.UserId = currUser.Id;
 

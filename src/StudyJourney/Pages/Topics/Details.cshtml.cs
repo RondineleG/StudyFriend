@@ -10,9 +10,9 @@ namespace StudyJourney.Pages.Topics
 {
     public class DetailsModel : PageModel
     {
-        private readonly StudyFriendContext _context;
+        private readonly StudyJourneyDbContext _context;
 
-        public DetailsModel(StudyFriendContext context)
+        public DetailsModel(StudyJourneyDbContext context)
         {
             _context = context;
         }
@@ -31,11 +31,7 @@ namespace StudyJourney.Pages.Topics
                 .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.TopicID == id);
 
-            if (Topic == null)
-            {
-                return NotFound();
-            }
-            return Page();
+            return Topic == null ? NotFound() : Page();
         }
     }
 }

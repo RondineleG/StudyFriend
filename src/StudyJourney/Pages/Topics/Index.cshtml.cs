@@ -12,10 +12,10 @@ namespace StudyJourney.Pages.Topics
 {
     public class IndexModel : PageModel
     {
-        private readonly StudyFriendContext _context;
+        private readonly StudyJourneyDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public IndexModel(StudyFriendContext context,
+        public IndexModel(StudyJourneyDbContext context,
             UserManager<ApplicationUser> userManager)
         {
             _context = context;
@@ -28,10 +28,10 @@ namespace StudyJourney.Pages.Topics
 
         public async Task OnGetAsync()
         {
-            var currUser = await _userManager.GetUserAsync(User);
-            var topics = from t in _context.Topic
-                         where t.UserId == currUser.Id
-                         select t;
+            ApplicationUser currUser = await _userManager.GetUserAsync(User);
+            IQueryable<Topic> topics = from t in _context.Topic
+                                       where t.UserId == currUser.Id
+                                       select t;
 
             if (!string.IsNullOrEmpty(SearchString))
             {

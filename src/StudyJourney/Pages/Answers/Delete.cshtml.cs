@@ -10,9 +10,9 @@ namespace StudyJourney.Pages.Answers
 {
     public class DeleteModel : PageModel
     {
-        private readonly StudyFriendContext _context;
+        private readonly StudyJourneyDbContext _context;
 
-        public DeleteModel(StudyFriendContext context)
+        public DeleteModel(StudyJourneyDbContext context)
         {
             _context = context;
         }
@@ -30,11 +30,7 @@ namespace StudyJourney.Pages.Answers
             Answer = await _context.Answer
                 .Include(a => a.Question).FirstOrDefaultAsync(m => m.AnswerID == id);
 
-            if (Answer == null)
-            {
-                return NotFound();
-            }
-            return Page();
+            return Answer == null ? NotFound() : Page();
         }
 
         public async Task<IActionResult> OnPostAsync(int? id)

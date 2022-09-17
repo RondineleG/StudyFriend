@@ -12,9 +12,9 @@ namespace StudyJourney.Pages.Questions
 {
     public class IndexModel : PageModel
     {
-        private readonly StudyFriendContext _context;
+        private readonly StudyJourneyDbContext _context;
 
-        public IndexModel(StudyFriendContext context)
+        public IndexModel(StudyJourneyDbContext context)
         {
             _context = context;
         }
@@ -23,12 +23,12 @@ namespace StudyJourney.Pages.Questions
 
         public async Task OnGetAsync()
         {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var questionsQuery = from q in _context.Question
-                                 join t in _context.Topic
-                                 on q.TopicID equals t.TopicID
-                                 where t.UserId == userId
-                                 select q;
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            IQueryable<Question> questionsQuery = from q in _context.Question
+                                                  join t in _context.Topic
+                                                  on q.TopicID equals t.TopicID
+                                                  where t.UserId == userId
+                                                  select q;
 
             Question = await questionsQuery
                 .Include(q => q.Topic)

@@ -10,9 +10,9 @@ namespace StudyJourney.Pages.Answers
 {
     public class IndexModel : PageModel
     {
-        private readonly StudyFriendContext _context;
+        private readonly StudyJourneyDbContext _context;
 
-        public IndexModel(StudyFriendContext context)
+        public IndexModel(StudyJourneyDbContext context)
         {
             _context = context;
         }

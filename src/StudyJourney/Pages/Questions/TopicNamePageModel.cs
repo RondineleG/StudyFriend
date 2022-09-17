@@ -12,14 +12,14 @@ namespace StudyJourney.Pages.Questions
     {
         public SelectList TopicNameSL { get; set; }
 
-        public void PopulateTopicsDropDownList(StudyFriendContext _context,
+        public void PopulateTopicsDropDownList(StudyJourneyDbContext _context,
             object selectedTopic = null)
         {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var topicsQuery = from t in _context.Topic
-                              where t.UserId == userId
-                              orderby t.Name
-                              select t;
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            IOrderedQueryable<Models.Topic> topicsQuery = from t in _context.Topic
+                                                          where t.UserId == userId
+                                                          orderby t.Name
+                                                          select t;
             TopicNameSL = new SelectList(topicsQuery.AsNoTracking(),
                 "TopicID", "Name", selectedTopic);
         }

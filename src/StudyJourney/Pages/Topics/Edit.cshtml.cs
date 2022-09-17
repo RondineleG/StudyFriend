@@ -13,10 +13,10 @@ namespace StudyJourney.Pages.Topics
 {
     public class EditModel : PageModel
     {
-        private readonly StudyFriendContext _context;
+        private readonly StudyJourneyDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public EditModel(StudyFriendContext context,
+        public EditModel(StudyJourneyDbContext context,
             UserManager<ApplicationUser> userManager)
         {
             _context = context;
@@ -35,11 +35,7 @@ namespace StudyJourney.Pages.Topics
 
             Topic = await _context.Topic.FirstOrDefaultAsync(m => m.TopicID == id);
 
-            if (Topic == null)
-            {
-                return NotFound();
-            }
-            return Page();
+            return Topic == null ? NotFound() : Page();
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -49,7 +45,7 @@ namespace StudyJourney.Pages.Topics
                 return Page();
             }
 
-            var currUser = await _userManager.GetUserAsync(User);
+            ApplicationUser currUser = await _userManager.GetUserAsync(User);
             Topic.UserId = currUser.Id;
             _context.Attach(Topic).State = EntityState.Modified;
 

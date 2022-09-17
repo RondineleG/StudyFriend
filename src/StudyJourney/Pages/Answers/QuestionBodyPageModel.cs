@@ -12,15 +12,15 @@ namespace StudyJourney.Pages.Answers
     {
         public SelectList QuestionBodySL { get; set; }
 
-        public void PopulateQuestionsDropDownList(StudyFriendContext _context,
+        public void PopulateQuestionsDropDownList(StudyJourneyDbContext _context,
             object selectedQuestion = null)
         {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var questionsQuery = from q in _context.Question
-                                 join t in _context.Topic
-                                 on q.TopicID equals t.TopicID
-                                 where t.UserId == userId
-                                 select q;
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            IQueryable<Models.Question> questionsQuery = from q in _context.Question
+                                                         join t in _context.Topic
+                                                         on q.TopicID equals t.TopicID
+                                                         where t.UserId == userId
+                                                         select q;
 
             QuestionBodySL = new SelectList(questionsQuery.AsNoTracking(),
                 "QuestionID", "Body", selectedQuestion);

@@ -7,7 +7,7 @@ namespace StudyJourneyTests
 {
     class Utilities
     {
-        public static DbContextOptions<StudyFriendContext> TestDbContextOptions()
+        public static DbContextOptions<StudyJourneyDbContext> TestDbContextOptions()
         {
             // Create a new service provider to create a new in-memory database.
             var serviceProvider = new ServiceCollection()
@@ -17,7 +17,7 @@ namespace StudyJourneyTests
             // Create a new options instance using an in-memory database and 
             // IServiceProvider that the context should resolve all of its 
             // services from.
-            var builder = new DbContextOptionsBuilder<StudyFriendContext>()
+            var builder = new DbContextOptionsBuilder<StudyJourneyDbContext>()
                 .UseInMemoryDatabase("InMemoryDb")
                 .UseInternalServiceProvider(serviceProvider);
 

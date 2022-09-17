@@ -8,9 +8,9 @@ namespace StudyJourney.Pages.Questions
 {
     public class CreateModel : TopicNamePageModel
     {
-        private readonly StudyFriendContext _context;
+        private readonly StudyJourneyDbContext _context;
 
-        public CreateModel(StudyFriendContext context)
+        public CreateModel(StudyJourneyDbContext context)
         {
             _context = context;
         }
@@ -37,7 +37,7 @@ namespace StudyJourney.Pages.Questions
                 return Page();
             }
 
-            var emptyQuestion = new Question();
+            Question emptyQuestion = new Question();
 
             if (await TryUpdateModelAsync(
                 emptyQuestion,

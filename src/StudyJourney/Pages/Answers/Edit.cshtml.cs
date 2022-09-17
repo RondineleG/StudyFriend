@@ -9,9 +9,9 @@ namespace StudyJourney.Pages.Answers
 {
     public class EditModel : QuestionBodyPageModel
     {
-        private readonly StudyFriendContext _context;
+        private readonly StudyJourneyDbContext _context;
 
-        public EditModel(StudyFriendContext context)
+        public EditModel(StudyJourneyDbContext context)
         {
             _context = context;
         }
@@ -49,7 +49,7 @@ namespace StudyJourney.Pages.Answers
                 return Page();
             }
 
-            var answerToUpdate = await _context.Answer.FindAsync(id);
+            Answer answerToUpdate = await _context.Answer.FindAsync(id);
 
             if (await TryUpdateModelAsync(
                 answerToUpdate,

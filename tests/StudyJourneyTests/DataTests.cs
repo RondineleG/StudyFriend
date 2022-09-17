@@ -10,7 +10,7 @@ namespace StudyJourneyTests
         [Fact]
         public void FindTopic_ByUserId()
         {
-            using (var db = new StudyFriendContext(Utilities.TestDbContextOptions()))
+            using (var db = new StudyJourneyDbContext(Utilities.TestDbContextOptions()))
             {
                 string user_id = "test_id";
                 var topics = new Topic[]

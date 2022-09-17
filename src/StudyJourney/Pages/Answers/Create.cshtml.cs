@@ -8,9 +8,9 @@ namespace StudyJourney.Pages.Answers
 {
     public class CreateModel : QuestionBodyPageModel
     {
-        private readonly StudyFriendContext _context;
+        private readonly StudyJourneyDbContext _context;
 
-        public CreateModel(StudyFriendContext context)
+        public CreateModel(StudyJourneyDbContext context)
         {
             _context = context;
         }
@@ -38,7 +38,7 @@ namespace StudyJourney.Pages.Answers
                 return Page();
             }
 
-            var emptyAnswer = new Answer();
+            Answer emptyAnswer = new Answer();
 
             if (await TryUpdateModelAsync(
                 emptyAnswer,

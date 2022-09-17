@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-
 using StudyJourney.Models;
 using System.Threading.Tasks;
 
@@ -21,22 +20,23 @@ namespace StudyJourney.Areas.Identity.Pages.Account
             _logger = logger;
         }
 
-        public void OnGet()
+        public async Task<IActionResult> OnGet()
         {
+            foreach (string cookie in Request.Cookies.Keys)
+            {
+                Response.Cookies.Delete(cookie);
+            }
+            await _signInManager.SignOutAsync();
+
+            _logger.LogInformation("User logged out.");
+            return RedirectToPage("/Index");
         }
 
         public async Task<IActionResult> OnPost(string returnUrl = null)
         {
             await _signInManager.SignOutAsync();
             _logger.LogInformation("User logged out.");
-            if (returnUrl != null)
-            {
-                return LocalRedirect(returnUrl);
-            }
-            else
-            {
-                return Page();
-            }
+            return returnUrl != null ? LocalRedirect(returnUrl) : RedirectToPage();
         }
     }
 }
