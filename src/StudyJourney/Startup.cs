@@ -15,8 +15,11 @@ namespace StudyJourney
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
+            configuration = new ConfigurationBuilder().SetBasePath(env.ContentRootPath)
+                                                      .AddJsonFile("Secrets.json")
+                                                      .Build();
             Configuration = configuration;
         }
 
@@ -33,7 +36,9 @@ namespace StudyJourney
 
             services.AddDbContext<StudyJourneyDbContext>(options =>
               options.UseSqlServer(
-                  Configuration.GetConnectionString("DefaultConnection")));
+                  Configuration.GetConnectionString("SqlServerConnection")));
+
+
 
             services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
                   .AddEntityFrameworkStores<StudyJourneyDbContext>()
