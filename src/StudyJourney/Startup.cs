@@ -40,6 +40,7 @@ namespace StudyJourney
                   .AddDefaultUI()
                   .AddDefaultTokenProviders();
 
+            services.AddServerSideBlazor();
             services.AddRazorPages()
                 .AddRazorPagesOptions(options =>
                 {
@@ -85,6 +86,7 @@ namespace StudyJourney
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+                endpoints.MapBlazorHub();
             });
         }
     }
