@@ -7,7 +7,7 @@
       "sslPort": 44362
     }
   },
-  "profiles": {
+  "profiles": {   
     "StudyJourney": {
       "commandName": "Project",
       "launchBrowser": true,
