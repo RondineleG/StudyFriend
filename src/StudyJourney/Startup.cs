@@ -52,6 +52,7 @@ namespace StudyJourney
                   .AddDefaultUI()
                   .AddDefaultTokenProviders();
 
+            services.AddServerSideBlazor();
             services.AddRazorPages()
                 .AddRazorPagesOptions(options =>
                 {
@@ -86,6 +87,7 @@ namespace StudyJourney
             }
 
             app.UseNToastNotify();
+            app.UseBlazorFrameworkFiles();
             app.UseStaticFiles();
             app.UseRouting();
             app.UseCookiePolicy();
@@ -97,6 +99,8 @@ namespace StudyJourney
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+                endpoints.MapBlazorHub();
+                endpoints.MapFallbackToPage("/_Host");
             });
         }
     }

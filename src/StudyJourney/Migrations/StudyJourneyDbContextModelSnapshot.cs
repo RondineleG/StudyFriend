@@ -279,7 +279,7 @@ namespace StudyJourney.Migrations
                     b.ToTable("Question", "Identity");
                 });
 
-            modelBuilder.Entity("StudyJourney.Models.Topic", b =>
+            modelBuilder.Entity("StudyJourney.Models.Topics", b =>
                 {
                     b.Property<int>("TopicID")
                         .ValueGeneratedOnAdd()
@@ -300,7 +300,7 @@ namespace StudyJourney.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Topic", "Identity");
+                    b.ToTable("Topics", "Identity");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -367,16 +367,16 @@ namespace StudyJourney.Migrations
 
             modelBuilder.Entity("StudyJourney.Models.Question", b =>
                 {
-                    b.HasOne("StudyJourney.Models.Topic", "Topic")
+                    b.HasOne("StudyJourney.Models.Topics", "Topics")
                         .WithMany("Questions")
                         .HasForeignKey("TopicID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Topic");
+                    b.Navigation("Topics");
                 });
 
-            modelBuilder.Entity("StudyJourney.Models.Topic", b =>
+            modelBuilder.Entity("StudyJourney.Models.Topics", b =>
                 {
                     b.HasOne("StudyJourney.Models.ApplicationUser", "ApplicationUser")
                         .WithMany("Topics")
@@ -397,7 +397,7 @@ namespace StudyJourney.Migrations
                     b.Navigation("Answers");
                 });
 
-            modelBuilder.Entity("StudyJourney.Models.Topic", b =>
+            modelBuilder.Entity("StudyJourney.Models.Topics", b =>
                 {
                     b.Navigation("Questions");
                 });

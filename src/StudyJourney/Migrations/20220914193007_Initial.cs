@@ -81,7 +81,7 @@ namespace StudyJourney.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Topic",
+                name: "Topics",
                 schema: "Identity",
                 columns: table => new
                 {
@@ -213,7 +213,7 @@ namespace StudyJourney.Migrations
                         name: "FK_Question_Topic_TopicID",
                         column: x => x.TopicID,
                         principalSchema: "Identity",
-                        principalTable: "Topic",
+                        principalTable: "Topics",
                         principalColumn: "TopicID",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -269,7 +269,7 @@ namespace StudyJourney.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Topic_UserId",
                 schema: "Identity",
-                table: "Topic",
+                table: "Topics",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
@@ -340,7 +340,7 @@ namespace StudyJourney.Migrations
                 schema: "Identity");
 
             migrationBuilder.DropTable(
-                name: "Topic",
+                name: "Topics",
                 schema: "Identity");
 
             migrationBuilder.DropTable(
