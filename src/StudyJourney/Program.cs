@@ -6,12 +6,13 @@ using Microsoft.Extensions.Logging;
 using StudyJourney.Data;
 using StudyJourney.Models;
 using System;
+using System.Threading.Tasks;
 
 namespace StudyJourney
 {
     public class Program
     {
-        public static async System.Threading.Tasks.Task Main(string[] args)
+        public static async Task Main(string[] args)
         {
             IWebHost host = CreateWebHostBuilder(args).Build();
 

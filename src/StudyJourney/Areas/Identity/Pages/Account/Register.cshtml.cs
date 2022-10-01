@@ -83,7 +83,7 @@ namespace StudyJourney.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 ApplicationUser user = new ApplicationUser { UserName = Input.UserName, Email = Input.Email, FirstName = Input.FirstName, LastName = Input.LastName };
-                if (_appsettings.AutoConfirmEmail)
+                if (!_appsettings.AutoConfirmEmail)
                 {
                     user.EmailConfirmed = true;
                 }

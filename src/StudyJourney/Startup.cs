@@ -15,8 +15,20 @@ namespace StudyJourney
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IHostEnvironment hostEnvironment)
         {
+            var builder = new ConfigurationBuilder()
+               .SetBasePath(hostEnvironment.ContentRootPath)
+               .AddJsonFile("appsettings.json", true, true)
+               .AddJsonFile($"appsettings.{hostEnvironment.EnvironmentName}.json", true, true)
+               .AddEnvironmentVariables();
+
+            if (hostEnvironment.IsDevelopment())
+            {
+                builder.AddUserSecrets<Startup>();
+            }
+
+            Configuration = builder.Build();
             Configuration = configuration;
         }
 
@@ -26,14 +38,14 @@ namespace StudyJourney
         {
             services.Configure<CookiePolicyOptions>(options =>
             {
-                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
             services.AddDbContext<StudyJourneyDbContext>(options =>
               options.UseSqlServer(
-                  Configuration.GetConnectionString("DefaultConnection")));
+                  Configuration.GetConnectionString("SqlServerConnection")));
+
 
             services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
                   .AddEntityFrameworkStores<StudyJourneyDbContext>()
