@@ -87,6 +87,7 @@ namespace StudyJourney
             }
 
             app.UseNToastNotify();
+            app.UseBlazorFrameworkFiles();
             app.UseStaticFiles();
             app.UseRouting();
             app.UseCookiePolicy();
@@ -99,6 +100,7 @@ namespace StudyJourney
             {
                 endpoints.MapRazorPages();
                 endpoints.MapBlazorHub();
+                endpoints.MapFallbackToPage("/_Host");
             });
         }
     }

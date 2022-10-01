@@ -24,4 +24,7 @@
     </div>
 </section>
 
-<component>@(await Html.RenderComponentAsync<TopicList>(RenderMode.Server))</component>
+<h1>Blazor Components</h1>
+<component type="typeof(TopicList)" render-mode="ServerPrerendered"/>
+
+<component type="typeof(Counter)" render-mode="ServerPrerendered"/>

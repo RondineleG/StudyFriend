@@ -1,54 +1,22 @@
+@page "/topic-list"
+
 @using Microsoft.AspNetCore.Components.Web
 @using StudyJourney.Models
 
-<div class="card-columns">
-    @foreach (var product in Topics)
-    {
-        <div class="card">
-            <div class="card-img" style=" ">
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">@product.Name</h5>
-            </div>
-            <div class="card-footer">
-                <small class="text-muted">
-                    <button 
-                        data-toggle="modal" data-target="#productModal" class="btn btn-primary">
-                        More Info
-                    </button>
-                </small>
-            </div>
-        </div>
-    }
-</div>
-
-
-<div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="productTitle">product.Name</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="card">
-                        <div class="card-img" style="background-image: url(' ');">
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text"product.Name</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">                   
-                        <span>Be the first to vote!</span>                 
-                </div>
-            </div>
-        }
+<div class="card">
+    <div class="card-img" style=" ">
+    </div>
+    <div class="card-body">
+        <h5 class="card-title"> Name</h5>
+    </div>
+    <div class="card-footer">
+        <small class="text-muted">
+            <button data-toggle="modal" data-target="#productModal" class="btn btn-primary">
+                More Info
+            </button>
+        </small>
     </div>
 </div>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-      
+

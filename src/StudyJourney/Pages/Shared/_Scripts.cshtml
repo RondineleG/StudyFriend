@@ -10,3 +10,11 @@
 <script src="~/plugins/summernote/summernote-bs4.min.js"></script>
 <!-- Blazor -->
 <script src="_framework/blazor.server.js"></script>
+<script src="_framework/blazor.webassembly.js"></script>
+<script>
+  Blazor.start({
+    configureSignalR: function (builder) {
+      builder.withUrl('/_blazor');
+    }
+  });
+</script>
